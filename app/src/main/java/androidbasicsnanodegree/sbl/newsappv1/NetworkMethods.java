@@ -105,7 +105,14 @@ public class NetworkMethods {
             JSONObject results = baseJsonResponse.getJSONObject("response");
             JSONArray newsArray = results.getJSONArray("results");
 
-            // Retrieving data for each news
+            // Retrieving data for each news or displaying a specific text if there are no news
+
+            if (newsArray.length()==0) {
+                News news = new News("", "", "", "No news to retrieve ! Please come back later!", "", "", "");
+                newsList.add(news);
+
+            } else {
+
             for (int i = 0; i < newsArray.length(); i++) {
 
                 JSONObject currentNews = newsArray.getJSONObject(i);
@@ -128,7 +135,7 @@ public class NetworkMethods {
 
                 // Creating a list of news
                 News news = new News(title, section, url, description, imgurl, author, date);
-                newsList.add(news);
+                newsList.add(news); }
             }
 
         } catch (JSONException e) {

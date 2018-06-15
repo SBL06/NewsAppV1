@@ -13,7 +13,7 @@ import java.util.List;
 public class NewsLoader extends AsyncTaskLoader<List<News>> {
 
     // The url used to retrieve datas
-    private static final String REQUEST_URL = "https://content.guardianapis.com/search?from-date=2017-01-01&use-date=published&show-fields=headline%2Cbyline%2CfirstPublicationDate%2CtrailText%2Cthumbnail&q=opera&api-key=dd26bab4-1e9a-4017-a632-4a5d2fc690d4";
+    private static final String REQUEST_URL = "https://content.guardianapis.com/search?from-date=2018-04-01&use-date=published&show-fields=headline%2Cbyline%2CfirstPublicationDate%2CtrailText%2Cthumbnail&q=opera&api-key=dd26bab4-1e9a-4017-a632-4a5d2fc690d4";
 
 
     public NewsLoader(@NonNull Context context) {
