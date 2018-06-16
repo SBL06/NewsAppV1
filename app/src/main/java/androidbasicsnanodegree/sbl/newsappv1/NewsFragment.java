@@ -1,10 +1,13 @@
 package androidbasicsnanodegree.sbl.newsappv1;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -24,6 +27,8 @@ import java.util.Objects;
 // This fragment was created using the Android Studio template
 
 public class NewsFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<News>> {
+
+    private static final String REQUEST_URL = "https://content.guardianapis.com/search?" ;
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
@@ -104,7 +109,26 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
     @NonNull
     @Override
     public Loader<List<News>> onCreateLoader(int id, @Nullable Bundle args) {
-        return new NewsLoader(Objects.requireNonNull(getContext()));
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+
+        // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
+        String category = sharedPrefs.getString(getString(R.string.category_key), getString(R.string.settings_category_default) );
+
+        // parse breaks apart the URI string that's passed into its parameter
+        Uri baseUri = Uri.parse(REQUEST_URL);
+
+        // buildUpon prepares the baseUri that we just parsed so we can add query parameters to it
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        // Append query parameter and its value. For example, the `format=geojson`
+        uriBuilder.appendQueryParameter("from-date", "2018-04-01");
+        uriBuilder.appendQueryParameter("use-date", "published");
+        uriBuilder.appendQueryParameter("show-fields", "headline,byline,firstPublicationDate,trailText,thumbnail");
+        uriBuilder.appendQueryParameter("q", category);
+        uriBuilder.appendQueryParameter("api-key", "dd26bab4-1e9a-4017-a632-4a5d2fc690d4" ) ;
+
+        return new NewsLoader(getContext(), uriBuilder.toString());
     }
 
     @Override

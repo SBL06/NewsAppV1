@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity implements NewsFragment.OnListFragmentInteractionListener {
 
+
     //For this app, the onCreate() methods will only launch the NewsFragment so we don't need to modify it
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,15 @@ public class MainActivity extends AppCompatActivity implements NewsFragment.OnLi
 
         if (id == R.id.refresh) {
             this.recreate();
+            return true ;
         }
+
+        if(id==R.id.settings) {
+            Intent i = new Intent(this, SettingsActivity.class) ;
+            startActivity(i);
+            return true ;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
