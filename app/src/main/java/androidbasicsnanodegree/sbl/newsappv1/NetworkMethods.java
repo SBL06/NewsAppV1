@@ -141,6 +141,8 @@ public class NetworkMethods {
         } catch (JSONException e) {
 
             Log.e("Network Methods", "Problem parsing the JSON results", e);
+            News news = new News("", "", "", "No news to retrieve ! Please come back later!", "", "", "");
+            newsList.add(news);
         }
 
         // Return the list of news
