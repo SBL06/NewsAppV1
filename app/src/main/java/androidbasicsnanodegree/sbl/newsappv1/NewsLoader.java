@@ -43,11 +43,9 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
             response = null;
         }
 
-        Log.d("REPONSE", response.toString());
 
         List<News> updatedList = NetworkMethods.extractFeature(response);
 
-        Log.d("LISTE", updatedList.toString());
 
         return updatedList;
     }

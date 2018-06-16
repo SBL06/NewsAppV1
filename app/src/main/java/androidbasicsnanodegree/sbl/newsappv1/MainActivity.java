@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements NewsFragment.OnListFragmentInteractionListener {
 
@@ -50,10 +51,16 @@ public class MainActivity extends AppCompatActivity implements NewsFragment.OnLi
     @Override
     public void onListFragmentInteraction(News item) {
         News currentNews = item;
+
+        if (currentNews.getNewsUrl()!=""){
+
         Uri newsUri = Uri.parse(currentNews.getNewsUrl());
 
         Intent i = new Intent(Intent.ACTION_VIEW, newsUri);
 
-        startActivity(i);
+        startActivity(i); }
+        else {
+            Toast.makeText(this, "News cannot be opened", Toast.LENGTH_SHORT).show();
+        }
     }
 }
