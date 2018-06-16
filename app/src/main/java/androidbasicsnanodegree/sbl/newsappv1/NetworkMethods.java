@@ -92,11 +92,19 @@ public class NetworkMethods {
     //Following method is creating a list of news from the JSON object retrieved
     public static List<News> extractFeature(String newsJSON) {
 
+        List<News> newsList = new ArrayList<>();
+
         if (TextUtils.isEmpty(newsJSON)) {
-            return null;
+            News news = new News("", "", "", "There was a problem retrieving the data. Please contact the developer", "", "", "");
+            newsList.add(news);
+            return newsList ;
         }
 
-        List<News> newsList = new ArrayList<>();
+        if (newsJSON == null) {
+            News news = new News("", "", "", "No news to retrieve ! Please come back later!", "", "", "");
+            newsList.add(news);
+            return newsList ;
+        }
 
         try {
 
