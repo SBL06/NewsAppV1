@@ -66,6 +66,9 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_news_list, container, false);
 
+        LoaderManager loaderManager = getLoaderManager();
+        loaderManager.destroyLoader(NEWS_LOADER_ID);
+
         adapter = new MyNewsRecyclerViewAdapter(mListener);
 
         // Set the adapter
@@ -91,7 +94,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
         // If there is a network connection, fetch data
         if (networkInfo != null && networkInfo.isConnected()) {
             // Get a reference to the LoaderManager, in order to interact with loaders.
-            LoaderManager loaderManager = getLoaderManager();
+
 
             // Initialize the loader. Pass in the int ID constant defined above and pass in null for
             // the bundle. Pass in this activity for the LoaderCallbacks parameter
@@ -101,7 +104,6 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
             adapter.mValues.add(new News("", "", "", "No internet connection !", "", "", " T"));
             adapter.notifyDataSetChanged();
         }
-
         return view;
     }
 

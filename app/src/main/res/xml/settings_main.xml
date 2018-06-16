@@ -9,7 +9,6 @@
         android:entryValues="@array/preferences_values"
         android:title="@string/category_setting_title"
         android:key="@string/category_key"
-        android:summary="@string/category_settings_summary"
         />
 
 </PreferenceScreen>
