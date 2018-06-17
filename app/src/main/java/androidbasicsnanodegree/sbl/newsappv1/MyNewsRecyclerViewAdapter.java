@@ -14,6 +14,8 @@ import android.widget.TextView;
 import androidbasicsnanodegree.sbl.newsappv1.NewsFragment.OnListFragmentInteractionListener;
 
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,10 +120,19 @@ public class MyNewsRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsRecycl
         }
 
         protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
+            URL urldisplay ;
+
             Bitmap mIcon11 = null;
+
             try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
+               urldisplay = new URL(urls[0]);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                urldisplay=null ;
+            }
+            
+            try {
+                InputStream in = urldisplay.openStream();
                 mIcon11 = BitmapFactory.decodeStream(in);
             } catch (Exception e) {
                 Log.e(Context_getter.getContext().getString(R.string.error), e.getMessage());

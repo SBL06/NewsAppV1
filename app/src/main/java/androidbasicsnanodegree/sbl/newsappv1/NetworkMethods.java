@@ -128,21 +128,21 @@ public class NetworkMethods {
 
                 JSONObject currentNews = newsArray.getJSONObject(i);
 
-                String title = currentNews.getString("webTitle");
+                String title = currentNews.optString("webTitle");
 
-                String section = currentNews.getString("sectionName");
+                String section = currentNews.optString("sectionName");
 
-                String url = currentNews.getString("webUrl");
+                String url = currentNews.optString("webUrl");
 
-                String date = currentNews.getString("webPublicationDate");
+                String date = currentNews.optString("webPublicationDate");
 
-                JSONObject fields = currentNews.getJSONObject("fields");
+                JSONObject fields = currentNews.optJSONObject("fields");
 
-                String description = fields.getString("trailText");
+                String description = fields.optString("trailText");
 
-                String imgurl = fields.getString("thumbnail");
+                String imgurl = fields.optString("thumbnail");
 
-                String author = fields.getString("byline");
+                String author = fields.optString("byline");
 
                 // Creating a list of news
                 News news = new News(title, section, url, description, imgurl, author, date);
