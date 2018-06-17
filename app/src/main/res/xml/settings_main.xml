@@ -11,4 +11,11 @@
         android:key="@string/category_key"
         />
 
+    <ListPreference
+        android:entries="@array/preference_order"
+        android:entryValues="@array/preference_order_values"
+        android:title="@string/order_pref_title"
+        android:key="@string/order_key"
+        />
+
 </PreferenceScreen>

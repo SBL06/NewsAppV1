@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">News App v1</string>
-    <string name="appLabel">Opera News</string>
+    <string name="appLabel">Musical News</string>
     <string name="title_activity_settings">Settings</string>
 
 
@@ -22,5 +22,20 @@
         <item>opera</item>
         <item>jazz</item>
     </string-array>
+
+    <string-array name="preference_order">
+        <item>Newest</item>
+        <item>Oldest</item>
+    </string-array>
+
+    <string-array name="preference_order_values">
+        <item>newest</item>
+        <item>oldest</item>
+    </string-array>
+
+    <string name="order_key">1</string>
+    <string name="order_pref_title">Order by</string>
+    <string name="order_default_value">newest</string>
+    <string name="settings_activity_label">Settings</string>
 
 </resources>
