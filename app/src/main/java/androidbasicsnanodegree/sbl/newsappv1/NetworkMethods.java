@@ -22,7 +22,10 @@ import java.util.List;
 // All the following methods are inspired from the Udacity course : Android Basics : Networking
 public class NetworkMethods {
 
-    static final String LOG_TAG = "Network Method";
+    static final String LOG_TAG = Context_getter.getContext().getString(R.string.log_tag_network_methods);
+    static final int READ_TIMEOUT = 10000 ;
+    static final int CONNECTION_TIMEOUT = 15000 ;
+    static final int RESPONSE_CODE = 200 ;
 
 
     // Following method is creating an URL from a String
@@ -32,7 +35,7 @@ public class NetworkMethods {
         try {
             url = new URL(stringUrl);
         } catch (MalformedURLException e) {
-            Log.e(LOG_TAG, "Problem building the URL ", e);
+            Log.e(LOG_TAG, Context_getter.getContext().getString(R.string.problem_building_url), e);
         }
         return url;
     }
@@ -50,19 +53,19 @@ public class NetworkMethods {
         InputStream inputStream = null;
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(10000);
-            urlConnection.setConnectTimeout(15000);
-            urlConnection.setRequestMethod("GET");
+            urlConnection.setReadTimeout(READ_TIMEOUT);
+            urlConnection.setConnectTimeout(CONNECTION_TIMEOUT);
+            urlConnection.setRequestMethod(Context_getter.getContext().getString(R.string.get));
             urlConnection.connect();
 
-            if (urlConnection.getResponseCode() == 200) {
+            if (urlConnection.getResponseCode() == RESPONSE_CODE ) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
             } else {
-                Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
+                Log.e(LOG_TAG, Context_getter.getContext().getString(R.string.error_response_code) + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem retrieving the JSON results.", e);
+            Log.e(LOG_TAG, Context_getter.getContext().getString(R.string.problem_JSON), e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -78,7 +81,7 @@ public class NetworkMethods {
     private static String readFromStream(InputStream inputStream) throws IOException {
         StringBuilder output = new StringBuilder();
         if (inputStream != null) {
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName(Context_getter.getContext().getString(R.string.utf_8)));
             BufferedReader reader = new BufferedReader(inputStreamReader);
             String line = reader.readLine();
             while (line != null) {
@@ -95,13 +98,13 @@ public class NetworkMethods {
         List<News> newsList = new ArrayList<>();
 
         if (TextUtils.isEmpty(newsJSON)) {
-            News news = new News("", "", "", "There was a problem retrieving the data. Please contact the developer", "", "", "");
+            News news = new News("", "", "", Context_getter.getContext().getString(R.string.problem_retrieving_data), "", "", "");
             newsList.add(news);
             return newsList ;
         }
 
         if (newsJSON == null) {
-            News news = new News("", "", "", "No news to retrieve ! Please come back later!", "", "", "");
+            News news = new News("", "", "", Context_getter.getContext().getString(R.string.no_news), "", "", "");
             newsList.add(news);
             return newsList ;
         }
@@ -116,7 +119,7 @@ public class NetworkMethods {
             // Retrieving data for each news or displaying a specific text if there are no news
 
             if (newsArray.length()==0) {
-                News news = new News("", "", "", "No news to retrieve ! Please come back later!", "", "", "");
+                News news = new News("", "", "", Context_getter.getContext().getString(R.string.no_news), "", "", "");
                 newsList.add(news);
 
             } else {
@@ -148,7 +151,7 @@ public class NetworkMethods {
 
         } catch (JSONException e) {
 
-            Log.e("Network Methods", "Problem parsing the JSON results", e);
+            Log.e(LOG_TAG, Context_getter.getContext().getString(R.string.problem_parsing_json), e);
         }
 
         // Return the list of news

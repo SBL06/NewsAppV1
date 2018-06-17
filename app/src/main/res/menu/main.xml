@@ -11,8 +11,7 @@
 
     <item
         android:id="@+id/settings"
-        android:title="refreshButton"
-        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/Settings"
         android:orderInCategory="2"
         app:showAsAction="ifRoom"/>/>
 

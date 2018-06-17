@@ -28,7 +28,7 @@ public class MyNewsRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsRecycl
 
     public MyNewsRecyclerViewAdapter(OnListFragmentInteractionListener listener) {
         mValues = new ArrayList<>();
-        mValues.add(new News(" ", " ", " ", "Loading News", " ", " ", " T"));
+        mValues.add(new News(" ", " ", " ", Context_getter.getContext().getString(R.string.loading_news), " ", " ", " T"));
         mListener = listener;
     }
 
@@ -48,16 +48,16 @@ public class MyNewsRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsRecycl
             News currentNews = mValues.get(position);
             holder.mItem = mValues.get(position);
             holder.title.setText(currentNews.getTitle());
-            holder.author.setText("By " + currentNews.getAuthor());
-            holder.section.setText("Category: \n" + currentNews.getSection());
-            holder.pubdate.setText("Published : \n" + currentNews.getDate());
+            holder.author.setText(Context_getter.getContext().getString(R.string.by) + currentNews.getAuthor());
+            holder.section.setText(Context_getter.getContext().getString(R.string.category_display) + currentNews.getSection());
+            holder.pubdate.setText(Context_getter.getContext().getString(R.string.published_display) + currentNews.getDate());
             holder.description.setText(currentNews.getDescription());
             holder.image.setImageResource(R.drawable.ic_cloud_download_black_24dp);
 
             new DownloadImageTask(holder.image).execute(currentNews.getImgUrl());
 
         } else {
-            Log.d("UI UPDATE ERROR", "empty list");
+            Log.d(Context_getter.getContext().getString(R.string.ui_update_error), Context_getter.getContext().getString(R.string.empty_list));
         }
 
         // Following method is made to pass data to the main activity when an item is clicked.
@@ -124,7 +124,7 @@ public class MyNewsRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsRecycl
                 InputStream in = new java.net.URL(urldisplay).openStream();
                 mIcon11 = BitmapFactory.decodeStream(in);
             } catch (Exception e) {
-                Log.e("Error", e.getMessage());
+                Log.e(Context_getter.getContext().getString(R.string.error), e.getMessage());
                 e.printStackTrace();
             }
             return mIcon11;

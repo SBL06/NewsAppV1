@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements NewsFragment.OnLi
 
         startActivity(i); }
         else {
-            Toast.makeText(this, "News cannot be opened", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.news_cannot_be_opened, Toast.LENGTH_SHORT).show();
         }
     }
 }

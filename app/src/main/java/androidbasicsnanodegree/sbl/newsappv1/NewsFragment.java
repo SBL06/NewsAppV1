@@ -92,7 +92,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
             loaderManager.initLoader(NEWS_LOADER_ID, null, this);
         } else {
             adapter.mValues.clear();
-            adapter.mValues.add(new News("", "", "", "No internet connection !", "", "", " T"));
+            adapter.mValues.add(new News("", "", "", getString(R.string.no_internet_connection), "", "", " T"));
             adapter.notifyDataSetChanged();
         }
         return view;
@@ -150,7 +150,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
             mListener = (OnListFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
+                    + getString(R.string.implement_onlistfragmentinteractionlistener));
         }
     }
 

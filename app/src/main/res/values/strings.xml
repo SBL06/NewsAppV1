@@ -37,5 +37,25 @@
     <string name="order_pref_title">Order by</string>
     <string name="order_default_value">newest</string>
     <string name="settings_activity_label">Settings</string>
+    <string name="Settings">Settings</string>
+    <string name="log_tag_network_methods">Network Method</string>
+    <string name="problem_building_url">Problem building the URL</string>
+    <string name="get">GET</string>
+    <string name="error_response_code">Error response code:</string>
+    <string name="problem_JSON">Problem retrieving the JSON results.</string>
+    <string name="utf_8">UTF-8</string>
+    <string name="problem_retrieving_data">There was a problem retrieving the data. Please contact the developer</string>
+    <string name="no_news">No news to retrieve ! Please come back later!</string>
+    <string name="problem_parsing_json">Problem parsing the JSON results</string>
+    <string name="news_cannot_be_opened">News cannot be opened</string>
+    <string name="loading_news">Loading News</string>
+    <string name="by">By</string>
+    <string name="category_display">Category:</string>
+    <string name="published_display">Published :</string>
+    <string name="ui_update_error">UI UPDATE ERROR</string>
+    <string name="empty_list">empty list</string>
+    <string name="error">Error</string>
+    <string name="no_internet_connection">No internet connection !</string>
+    <string name="implement_onlistfragmentinteractionlistener">must implement OnListFragmentInteractionListener</string>
 
 </resources>
